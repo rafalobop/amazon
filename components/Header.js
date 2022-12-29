@@ -38,7 +38,7 @@ function Header() {
         </div>
         <div className='flex items-center space-x-3 p-2 pl-6 bg-[#16191E] text-white text-sm'>
             <p className='link flex items-center'>
-                <MenuIcon className='h-6 mr-1'/>
+                <MenuIcon className='h-6 mr-1'/>All
             </p>
             <p className='link'>Prime Video</p>
             <p className='link'>Amazon Business</p>

@@ -9,6 +9,10 @@ module.exports = {
         protocol: 'https',
         hostname: 'pngimg.com'
       },
+      {
+        protocol: 'https',
+        hostname:'links.papareact.com'
+      }
     ],
     minimumCacheTTL: 1500000
   }
