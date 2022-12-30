@@ -2,9 +2,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Header from '../components/Header'
 import Banner from '../components/Banner'
+import ProductFeed from '../components/ProductFeed'
 
 
-export default function Home() {
+export default function Home(props) {
+
+  
+
+  console.log('ṕrrrr', props)
   return (
     <div className='bg-gray-100'>
       <Head>
@@ -18,7 +23,22 @@ export default function Home() {
       
       <main className='mx-auto w-full'>
         <Banner />
+
+        <ProductFeed  />
+        <p>{products}</p>
       </main>      
     </div>
   )
+}
+
+export async function getServerSideProps(context){
+  
+  const products = await fetch("https://fakestoreapi.com/products").then((res) => res.json())
+
+  return {
+    props: {
+      products
+    }
+  }
+
 }
