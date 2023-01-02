@@ -1,48 +1,50 @@
 import React from 'react'
 import Product from './Product'
 
-function ProductFeed({ products }) {
+const ProductFeed = ({ products }) => {
 
   return (
     <div className='grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52 mx-auto'>
-      <h1>Products ...</h1>
-      {products.slice(0, 4).map(({id, title, price, description, category, image}) => (
+      {products.slice(0, 4).map((prod) => (
         <Product 
-          key={id}
-          id={id}
-          price={price}
-          description={description}
-          category={category}
-          image={image}
+          product={prod}
+          key={prod.id}
+          /* id={prod.id}
+          price={prod.price}
+          description={prod.description}
+          category={prod.category}
+          image={prod.image} */
         />
       ))}
 
       <img className='md:col-span-full' src="https://links.papareact.com/dyz" alt="6" />
         
-      <div className='md:col-span-2'>
-        {products.slice(4,5).map(({id, title, price, description, category, image}) => (
+      <div className='md:col-span-1'>
+        {products.slice(4,5).map((prod) => (
           <Product 
-            key={id}
-            id={id}
-            price={price}
-            description={description}
-            category={category}
-            image={image}
+            product={prod}
+            key={prod.id}
+            /* id={prod.id}
+            price={prod.price}
+            description={prod.description}
+            category={prod.category}
+            image={prod.image} */
           />
         ))}
       </div>
 
-      {products.slice(5, products.length).map(({id, title, price, description, category, image}) => (
+          
+      {products.slice(5, products.length).map((prod) => (
           <Product 
-            key={id}
-            id={id}
-            price={price}
-            description={description}
-            category={category}
-            image={image}
+            product={prod}
+            key={prod.id}
+            /* id={prod.id}
+            price={prod.price}
+            description={prod.description}
+            category={prod.category}
+            image={prod.image} */
           />
         ))}
-    
     </div>
   )
 }

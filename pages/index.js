@@ -5,12 +5,9 @@ import Banner from '../components/Banner'
 import ProductFeed from '../components/ProductFeed'
 
 
-export default function Home(props) {
+export default function Home({ products }) {
 
-  
-
-  console.log('ṕrrrr', props)
-  return (
+    return (
     <div className='bg-gray-100'>
       <Head>
         <title>Amazon | From A to Z</title>
@@ -24,21 +21,20 @@ export default function Home(props) {
       <main className='mx-auto w-full'>
         <Banner />
 
-        <ProductFeed  />
-        <p>{products}</p>
+        <ProductFeed products={products}/>
       </main>      
     </div>
   )
 }
 
-export async function getServerSideProps(context){
+export const getServerSideProps = async (context) => {
   
-  const products = await fetch("https://fakestoreapi.com/products").then((res) => res.json())
+  const response = await fetch("https://fakestoreapi.com/products")
+  const products = await response.json()
 
   return {
     props: {
-      products
+      products,
     }
   }
-
 }
