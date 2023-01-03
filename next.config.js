@@ -19,5 +19,8 @@ module.exports = {
       }
     ],
     minimumCacheTTL: 1500000
+  },
+  env:{
+    stripe_public_key: process.env.STRIPE_PUBLIC_KEY
   }
 }

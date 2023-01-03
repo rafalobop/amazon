@@ -8,7 +8,8 @@ import { selectItems } from '../redux/basketSlice'
 
 function Header() {
 
-    const { session } = useSession() 
+    const session = useSession() 
+
     const router = useRouter()
     const items = useSelector(selectItems)
     
@@ -31,8 +32,8 @@ function Header() {
                     <SearchIcon className="h-12 p-4" />
                 </div>
                 <div className='text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap'>
-                    <div onClick={!session ? signIn : signOut} className='cursor-pointer link'>
-                        <p>{session ? `Hello, ${session.user.name}` : "Sign In"}</p>
+                    <div onClick={!session.data ? signIn : signOut} className='cursor-pointer link'>
+                        <p>{session.data ? `Hello, ${session.data.user.name}` : "Sign In"}</p>
                         <p className='font-extrabold md:text-sm'>Account & Lists</p>
                     </div>
                     <div className='link'>
