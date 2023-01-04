@@ -1,15 +1,15 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore'
+import firebase from 'firebase'; 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAVCgpgkGDCb7J1oSgjVT5gW-oAHmsMwb8",
-    authDomain: "fir-b0815.firebaseapp.com",
-    projectId: "fir-b0815",
-    storageBucket: "fir-b0815.appspot.com",
-    messagingSenderId: "918138234573",
-    appId: "1:918138234573:web:5ab2a6ac27f7107f4fab84"
+    apiKey: "AIzaSyC0GEnUkwUEu9T5egmtexR_C0W5yanTg8E",
+    authDomain: "amzn-7c3ee.firebaseapp.com",
+    projectId: "amzn-7c3ee",
+    storageBucket: "amzn-7c3ee.appspot.com",
+    messagingSenderId: "508508817076",
+    appId: "1:508508817076:web:bcec61218dd144031bb9e1"
 };
 
-const app = initializeApp(firebaseConfig)
-export const db = getFirestore(app)
+const app = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
+const db = app.firestore()
 
+export default db

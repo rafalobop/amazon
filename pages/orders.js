@@ -1,13 +1,14 @@
 import React from 'react'
 import Header from '../components/Header'
 import { getSession, useSession } from 'next-auth/react'
-import {db} from '../firebase'
-import { doc, getDoc, getDocs} from 'firebase/firestore'
+import db from '../firebase'
+import moment from 'moment'
 
 function Orders({ orders }) {
 
+    console.log('orrr', orders)
+
     const session = useSession()
-    console.log('sssss', orders)
 
     return (
         <div>
@@ -28,7 +29,7 @@ function Orders({ orders }) {
     )
 }
 
-export default Orders
+export default Orders;
 
 export const getServerSideProps = async (context) => {
 
@@ -42,27 +43,31 @@ export const getServerSideProps = async (context) => {
         }
     }
 
-    const stripeOrders = await getDocs(doc(db, "orders", session.user.email))
-    const lerele = stripeOrders.map((file)=> console.log('123213',file.data()))
+    const stripeOrders = await db
+        .collection('users')
+        .doc(session.user.email)
+        .collection('orders')
+        .orderBy("timestamp", "desc")
+        .get()
 
-    /* const orders = await Promise.all(
-        stripeOrders.docs.map(async order => ({
+    const orders = await Promise.all(
+        stripeOrders.docs?.map( async (order) => ({
             id: order.id,
             amount: order.data().amount,
             amountShipping: order.data().amount_shipping,
             images: order.data().images,
             timestamp: moment(order.data().timestamp.toDate()).unix(),
-            items:(
+            items: (
                 await stripe.checkout.sessions.listLineItems(order.id, {
-                    limit: 100
+                    limit: 100,
                 })
-            ).data,
-        })) 
-    ); */
-
+            ).data
+        }))
+    ) 
+    
     return {
         props: {
-            lerele
+            orders
         }
     }
 }

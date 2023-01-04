@@ -30,8 +30,7 @@ export default function Home({ products }) {
 
 export const getServerSideProps = async (context) => {
   
-  const response = await axios.get("https://fakestoreapi.com/products")
-   console.log('rerered', response)
+  const response = await fetch("https://fakestoreapi.com/products")
   const products = await response.json()
   const session = await getSession()
 
